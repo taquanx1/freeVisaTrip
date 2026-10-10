@@ -6,7 +6,7 @@ Visa-aware destination discovery and round-trip flight search for groups travell
 
 - Searchable multi-passport selection
 - Interactive, keyboard-accessible visa eligibility map
-- Mixed visa-free / visa-on-arrival destination patterns
+- Mixed visa-free / visa-on-arrival / eVisa / ETA destination patterns
 - Gateway airport, date, currency, cabin, and passenger controls
 - SerpApi Google Flights proxy with outbound/return selection
 - Signed, expiring selection tokens and short-lived edge caching

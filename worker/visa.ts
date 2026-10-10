@@ -21,19 +21,21 @@ export function classifyPolicy(raw: string | number | null | undefined, sameCoun
   if (/^\d+$/.test(value)) return 'visa-free'
   if (value === 'visa free') return 'visa-free'
   if (value === 'visa on arrival') return 'visa-on-arrival'
+  if (value === 'e-visa' || value === 'evisa') return 'evisa'
+  if (value === 'eta') return 'eta'
   return 'restricted'
 }
 
 function policyLabel(kind: PolicyKind, raw: string | number | null): string {
   if (kind === 'visa-on-arrival') return 'Visa on arrival'
+  if (kind === 'evisa') return 'eVisa required online'
+  if (kind === 'eta') return 'Electronic travel authorisation required'
   if (kind === 'visa-free') {
     if (raw === -1 || raw === '-1') return 'Domestic travel'
     if (/^\d+$/.test(String(raw))) return `Visa-free for ${raw} days`
     return 'Visa-free'
   }
   const value = String(raw ?? '').trim().toLowerCase()
-  if (value === 'eta') return 'Electronic travel authorisation required'
-  if (value === 'e-visa') return 'eVisa required before travel'
   if (!value) return 'Entry policy unavailable — confirm before travel'
   return value.replace(/^./, (letter) => letter.toUpperCase())
 }
@@ -45,7 +47,7 @@ export function aggregateDestination(dataset: VisaDataset, passportCodes: string
     return { passport, raw, kind, label: policyLabel(kind, raw) }
   })
   const eligible = policies.every((policy) => policy.kind !== 'restricted')
-  const pattern = eligible ? [...new Set(policies.map((policy) => policy.kind as 'visa-free' | 'visa-on-arrival'))] : []
+  const pattern = eligible ? [...new Set(policies.map((policy) => policy.kind as Exclude<PolicyKind, 'restricted'>))] : []
   return { countryCode: destinationCode, country: countryName(destinationCode), eligible, pattern, policies, airports: airportsByCountry[destinationCode] ?? [] }
 }
 

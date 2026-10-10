@@ -1,4 +1,4 @@
-export type PolicyKind = 'visa-free' | 'visa-on-arrival' | 'restricted'
+export type PolicyKind = 'visa-free' | 'visa-on-arrival' | 'evisa' | 'eta' | 'restricted'
 
 export interface Passport {
   code: string

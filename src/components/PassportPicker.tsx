@@ -12,7 +12,7 @@ export function PassportPicker({ selected, onChange, onContinue }: Props) {
 
   const choose = (code: string) => { onChange([...selected, code]); setQuery(''); setOpen(false); input.current?.focus() }
   return <section className="step passport-step" aria-labelledby="passport-title">
-    <div className="step-heading"><span className="step-number">01</span><div><p className="eyebrow">Start with your group</p><h2 id="passport-title">Which passports are travelling?</h2><p>Add everyone. We’ll only show places that welcome the whole group without preapproval.</p></div></div>
+    <div className="step-heading"><span className="step-number">01</span><div><p className="eyebrow">Start with your group</p><h2 id="passport-title">Which passports are travelling?</h2><p>Add everyone. We’ll show places accessible visa-free, on arrival, or with a simple online authorisation.</p></div></div>
     <div className="passport-panel">
       <div className="chips" aria-label="Selected passports">
         {selected.map((code) => { const passport = passports.find((item) => item.code === code)!; return <span className="chip" key={code}><span aria-hidden>{passport.flag}</span>{passport.name}<button aria-label={`Remove ${passport.name}`} onClick={() => onChange(selected.filter((item) => item !== code))}><X size={15}/></button></span> })}
