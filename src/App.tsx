@@ -73,6 +73,6 @@ export default function App() {
         <div ref={resultsRef}>{error && <div className="error-state" role="alert"><AlertCircle/><div><strong>{error.code === 'QUOTA_EXHAUSTED' ? 'Free search limit reached' : 'We hit some turbulence'}</strong><p>{error.message}</p></div></div>}{loading === 'outbound' && <FlightSkeleton/>}{outbounds.length > 0 && <FlightResults title="Choose your outbound" flights={outbounds} selected={selectedOutbound?.token} onSelect={chooseOutbound}/>} {loading === 'return' && <FlightSkeleton/>}{returns.length > 0 && <FlightResults title="Now choose your return" flights={returns} selected={selectedReturn?.token} onSelect={setSelectedReturn} googleUrl={googleUrl} onReset={reset}/>}</div>
       </div>
     </main>
-    <footer><div><a className="brand" href="#top"><span><Globe2 size={20}/></span>FreeVisaTrip</a><p>Visa guidance is advisory and may change. Always confirm entry requirements with official authorities before travel. Fares are supplied by Google Flights via SerpApi and may change before booking.</p></div><span>Built for borderless friendships.</span></footer>
+    <footer><div><a className="brand" href="#top"><span><Globe2 size={20}/></span>FreeVisaTrip</a><p>Visa guidance is advisory and may change. Always confirm entry requirements with official authorities before travel. Fares are supplied by Google Flights via SerpApi and may change before booking. Airport data: OurAirports. City population data: GeoNames (CC BY 4.0).</p></div><span>Built for borderless friendships.</span></footer>
   </>
 }

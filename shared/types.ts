@@ -14,6 +14,7 @@ export interface Airport {
   country: string
   lat: number
   lon: number
+  population?: number
 }
 
 export interface PassportPolicy {

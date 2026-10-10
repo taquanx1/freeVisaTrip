@@ -11,4 +11,9 @@ describe('expanded scheduled-airport catalog', () => {
     expect(airports.find((airport) => airport.iata === 'USM')?.municipality).toContain('Samui')
     expect(new Set(airports.map((airport) => airport.iata)).size).toBe(airports.length)
   })
+
+  it('adds population metadata for sorting major gateway cities', () => {
+    expect(airports.find((airport) => airport.iata === 'SIN')?.population).toBeGreaterThan(5_000_000)
+    expect(airports.filter((airport) => airport.population).length).toBeGreaterThan(2_500)
+  })
 })
