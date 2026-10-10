@@ -38,7 +38,8 @@ npm run build
 2. Create KV: `npx wrangler kv namespace create VISA_DATA`
 3. Replace the placeholder KV ID in `wrangler.jsonc` with the returned ID.
 4. Store the fare key securely: `npx wrangler secret put SERPAPI_KEY`
-5. Deploy: `npm run deploy`
+5. Optionally seed current visa data: `npm run visa:seed-file -- /tmp/freevisatrip-visa-seed.json`, then upload it with `npx wrangler kv key put --remote --binding VISA_DATA --path /tmp/freevisatrip-visa-seed.json visa-dataset:v1`.
+6. Deploy: `npm run deploy`
 
 The cron trigger runs daily at 03:17 UTC. The first request can safely use the bundled visa snapshot before the first refresh.
 

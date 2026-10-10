@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "visa:seed-file": "tsx scripts/prepare-visa-seed.ts",
     "deploy": "npm run build && wrangler deploy",
     "cf-typegen": "wrangler types worker-configuration.d.ts"
   },
@@ -45,6 +46,7 @@
     "jsdom": "^27.0.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.44.1",
+    "tsx": "^4.20.6",
     "vite": "^7.1.7",
     "vitest": "^5.0.3",
     "wrangler": "^4.149.0"
