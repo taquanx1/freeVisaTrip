@@ -34,6 +34,7 @@ test('opens a population-sorted country list, closes it outside, and zooms the m
   await page.getByRole('option').click()
   await page.getByRole('button', { name: /See destinations/i }).click()
 
+  await expect(page.locator('svg [filter="url(#countryGlow)"]')).toHaveCount(0)
   await expect(page.getByRole('button', { name: 'Zoom out' })).toBeDisabled()
   await page.getByRole('button', { name: 'Zoom in' }).click()
   await expect(page.getByRole('button', { name: 'Zoom out' })).toBeEnabled()
@@ -42,10 +43,12 @@ test('opens a population-sorted country list, closes it outside, and zooms the m
   await page.getByRole('button', { name: 'Thailand, eligible' }).focus()
   await page.keyboard.press('Enter')
   await expect(page.getByRole('heading', { name: 'Thailand' })).toBeVisible()
+  await expect(page.locator('svg [filter="url(#countryGlow)"]')).toHaveCount(1)
   const cityHeadings = page.locator('.city-heading strong')
   await expect(cityHeadings).toHaveText(['Bangkok', 'Phuket'])
   await expect(page.locator('.rsm-marker')).toHaveCount(0)
 
   await page.getByRole('heading', { name: 'Where can everyone go?' }).click()
   await expect(page.getByRole('heading', { name: 'Thailand' })).toHaveCount(0)
+  await expect(page.locator('svg [filter="url(#countryGlow)"]')).toHaveCount(0)
 })

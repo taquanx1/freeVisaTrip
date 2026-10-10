@@ -64,7 +64,7 @@ export function DestinationMap({ data, selected, onSelect }: Props) {
             const destination = resolve(geo)
             const mixed = (destination?.pattern.length ?? 0) > 1
             const onlineOrArrival = destination?.pattern[0] !== 'visa-free'
-            const selectedCountry = active?.countryCode === destination?.countryCode
+            const selectedCountry = Boolean(active && destination && active.countryCode === destination.countryCode)
             const fill = selectedCountry ? '#ffd45c' : !destination?.eligible ? '#d9dddc' : mixed ? 'url(#mixedPattern)' : onlineOrArrival ? '#f4aab9' : '#5cbdb9'
             return <Geography key={geo.rsmKey} geography={geo} tabIndex={destination ? 0 : -1} role={destination ? 'button' : undefined} aria-label={destination ? `${destination.country}, ${destination.eligible ? 'eligible' : destination.policies.filter((item) => item.kind === 'restricted').map((item) => `${item.passport} needs preapproval`).join(', ')}` : undefined} onClick={() => destination && setActive(destination)} onKeyDown={(event) => { if (destination && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); setActive(destination) } }} filter={selectedCountry ? 'url(#countryGlow)' : undefined} style={{ default: { fill, stroke: selectedCountry ? '#ff5f82' : '#fff', strokeWidth: selectedCountry ? 1.7 : .6, outline: 'none' }, hover: { fill: selectedCountry ? '#ffd45c' : destination?.eligible ? '#339e99' : '#c9cecc', stroke: selectedCountry ? '#ff5f82' : '#fff', strokeWidth: selectedCountry ? 1.7 : .6, outline: 'none', cursor: destination ? 'pointer' : 'default' }, pressed: { fill, outline: 'none' } }}/>
           })}</Geographies>
