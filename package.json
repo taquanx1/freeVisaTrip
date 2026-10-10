@@ -12,6 +12,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "visa:seed-file": "tsx scripts/prepare-visa-seed.ts",
+    "data:airports": "tsx scripts/generate-airports.ts",
     "deploy": "npm run build && wrangler deploy",
     "cf-typegen": "wrangler types worker-configuration.d.ts"
   },
@@ -38,6 +39,7 @@
     "@types/react-dom": "^18.3.7",
     "@types/react-simple-maps": "^3.0.6",
     "@types/topojson-client": "^3.1.5",
+    "csv-parse": "^7.0.3",
     "@vitejs/plugin-react": "^5.0.3",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",

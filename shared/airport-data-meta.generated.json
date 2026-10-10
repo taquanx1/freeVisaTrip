@@ -1,0 +1,7 @@
+{
+  "source": "https://davidmegginson.github.io/ourairports-data/airports.csv",
+  "generatedAt": "2026-10-10T06:00:04.038Z",
+  "criteria": "scheduled_service=yes, valid IATA code, not closed",
+  "airports": 4133,
+  "countries": 234
+}

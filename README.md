@@ -6,6 +6,7 @@ Visa-aware destination discovery and round-trip flight search for groups travell
 
 - Searchable multi-passport selection
 - Interactive, keyboard-accessible visa eligibility map
+- 4,000+ scheduled-service airports across 230+ countries and territories, generated from public-domain OurAirports data
 - Mixed visa-free / visa-on-arrival / eVisa / ETA destination patterns
 - Gateway airport, date, currency, cabin, and passenger controls
 - SerpApi Google Flights proxy with outbound/return selection
@@ -42,6 +43,8 @@ npm run build
 6. Deploy: `npm run deploy`
 
 The cron trigger runs daily at 03:17 UTC. The first request can safely use the bundled visa snapshot before the first refresh.
+
+Refresh bundled airport metadata with `npm run data:airports`. The generator accepts every non-closed airport that OurAirports marks as scheduled service and that has a valid three-letter IATA code, including regional, small, seaplane, and heliport services.
 
 Never store a SerpApi key in a source file, `.env` file committed to Git, Wrangler configuration, logs, or client-side code. Keep SerpApi paid renewal disabled to ensure quota exhaustion cannot create charges.
 
